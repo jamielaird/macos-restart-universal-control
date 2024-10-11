@@ -1,26 +1,3 @@
--- Function to check assistive access
-on isAssistiveAccessEnabled()
-	set appName to "Restart Universal Control" -- Replace with the name of your application
-	set accessibilityEnabled to false
-	
-	try
-		set accessibilityEnabled to (do shell script "osascript -e 'tell application \"System Events\" to get the name of every process whose background only is false'") contains appName
-	end try
-	
-	return accessibilityEnabled
-end isAssistiveAccessEnabled
-
--- Main script
-if not isAssistiveAccessEnabled() then
-	display dialog "This script requires assistive access. Please enable it in System Preferences." buttons {"OK"} default button "OK"
-	
-	tell application "System Settings"
-		activate
-		set current pane to pane id "com.apple.preference.universalaccess"
-	end tell
-end if
-
-
 tell application "System Settings"
 	activate
 end tell
@@ -43,7 +20,6 @@ tell application "System Events"
 		
 		-- Click the "Advanced…" button, if available
 		try
-			-- click button "Advanced…" of window 1
 			click button 1 of scroll area 2 of group 1 of group 2 of splitter group 1 of group 1 of window 1
 		on error
 			display dialog "Could not find the Advanced button."
@@ -72,6 +48,7 @@ tell application "System Events"
 		end try
 	end tell
 	
+	-- Press the Escape key to close any dialogs
 	key code 53
 end tell
 
