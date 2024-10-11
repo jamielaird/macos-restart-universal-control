@@ -1,3 +1,4 @@
+-- Continue with rest of the script to open "Displays" and toggle settings
 tell application "System Settings"
 	activate
 end tell
